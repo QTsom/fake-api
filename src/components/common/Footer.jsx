@@ -13,5 +13,13 @@ const Footer = () => {
 export default Footer;
 
 const FooterContainer = styled.footer `
-    
+    background-color: #000;
+    color: #fff;
+
+    .footer-inner {
+        max-width: 1240px;
+        width: 100%;
+        padding: 30px 20px;
+        margin: 0 auto;
+    }
 `

@@ -13,5 +13,12 @@ const Header = () => {
 export default Header;
 
 const HeaderContainer = styled.header `
-    
+    background-color: #000;
+    .header-inner {
+        max-width: 1240px;
+        width: 100%;
+        padding: 30px 20px;
+        margin: 0 auto;
+        color: #fff;
+    }
 `
