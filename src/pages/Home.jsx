@@ -1,10 +1,10 @@
-import React from 'react';
+import Layout from "components/common/Layout";
 
 const Home = () => {
   return (
-    <div>
-      <h2>햐햐햐</h2>
-    </div>
+    <Layout>
+      <h2>처음 보이는 페이지</h2>
+    </Layout>
   );
 };
 
