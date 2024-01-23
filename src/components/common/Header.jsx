@@ -10,7 +10,6 @@ const Header = () => {
     )
 }
 
-export default Header;
 
 const HeaderContainer = styled.header `
     background-color: #000;
@@ -22,3 +21,6 @@ const HeaderContainer = styled.header `
         color: #fff;
     }
 `
+
+
+export default Header;

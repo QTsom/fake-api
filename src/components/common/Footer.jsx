@@ -10,8 +10,6 @@ const Footer = () => {
     )
 }
 
-export default Footer;
-
 const FooterContainer = styled.footer `
     background-color: #000;
     color: #fff;
@@ -23,3 +21,5 @@ const FooterContainer = styled.footer `
         margin: 0 auto;
     }
 `
+
+export default Footer;
