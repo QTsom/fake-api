@@ -97,7 +97,11 @@ const Home = () => {
                       <img src={photo.imgUrl} alt="" />
                     </div>
                     <h3 className="photo__item--title">{photo.title}</h3>
+                    <p className="photo__item--hover">
+                      확대된 이미지 보기
+                    </p>
                   </div>
+
 
                   {selectPhotoId === photo.id && (
                     <div className="enlargement">
@@ -181,9 +185,31 @@ const HomeContainer = styled.div`
       gap: 20px;
     }
     &__item {
+      position: relative;
       padding: 20px;
       border: 1px solid #999;
       border-radius: 8px;
+      cursor: pointer;
+
+      &--hover {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 15px;
+        font-weight: 600;
+        color: #000;
+        background-color: #eee;
+        border-radius: 4px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        z-index: -1;
+        transition: all 0.3s;
+      }
+      &:hover .photo__item--hover  {
+        opacity: 1;
+        z-index: 10;
+      }
 
       &--img {
         margin-bottom: 13px;
@@ -204,6 +230,7 @@ const HomeContainer = styled.div`
       top: 0;
       bottom: 0;
       background: rgba(100, 100, 100, 0.3);
+      z-index: 50;
 
       &__inner {
         position: absolute;
