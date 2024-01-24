@@ -14,8 +14,8 @@ html {
     -moz-text-size-adjust: none; /* 파이어폭스 */
     -o-text-size-adjust: none; /* 오페라 구버전 */
     user-select: none;
-    background-color: #fff;
-    color: #333;
+    background-color: #333;
+    color: #f1f1f1;
   }
   
   body {

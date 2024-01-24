@@ -11,7 +11,7 @@ const Footer = () => {
 }
 
 const FooterContainer = styled.footer `
-    background-color: #000;
+    background-color: #333;
     color: #fff;
 
     .footer-inner {

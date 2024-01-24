@@ -28,7 +28,7 @@ const Home = () => {
       <HomeContainer>
         <h2>처음 보이는 페이지</h2>
 
-        <div>
+        <div className="inner">
           <div className="post">
             <ul className="post__list">
               {postList.map((post, postItem) => (
@@ -77,7 +77,9 @@ const Home = () => {
 
 
 const HomeContainer = styled.div`
-  
+  .home-inner {
+    max-width: 1240;
+  }
 `
 
 export default Home;
