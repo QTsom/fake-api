@@ -13,7 +13,7 @@ const Header = () => {
 
 const HeaderContainer = styled.header `
     background-color: #333;
-    border-bottom: 1px solid #f1f1f1;
+    border-bottom: 3px solid #f1f1f1;
 
     .header-inner {
         max-width: 1240px;

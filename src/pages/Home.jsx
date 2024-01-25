@@ -124,8 +124,10 @@ const Home = () => {
                 </li>
               ))}
             </ul>
-
-            <button type="button" className="comment--more-btn" onClick={loadMoreComments}>더보기</button>
+              
+            <div className="comment__more-view">
+              <button type="button" className="comment__more-view--btn" onClick={loadMoreComments}>더보기</button>
+            </div>
           </div>
           
           <div className="photo">
@@ -200,7 +202,9 @@ const HomeContainer = styled.div`
     margin-bottom: 60px;
   }
   .comment {
+    padding-bottom: 80px;
     margin-bottom: 150px;
+    border-bottom: 1px solid #ccc;
 
     &__list {
       display: grid;
@@ -241,9 +245,26 @@ const HomeContainer = styled.div`
       }
     }
 
-    &--more-btn {
-      background-color: #f1f1f1;
-      color: #000;
+    &__more-view {
+      margin-top: 70px;
+      text-align: center;
+
+      &--btn {
+        width: 130px;
+        height: 40px;
+        font-size: 16px;
+        font-weight: 600;
+        background-color: #f1f1f1;
+        color: #000;
+        border-radius: 4px;
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: #fbf845;
+          /* color: #fff; */
+          transform: scale(1.1);
+        }
+      }
     }
   }
 
