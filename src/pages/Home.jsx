@@ -1,64 +1,102 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import styled from "styled-components";
 import Layout from "components/common/Layout";
 
 const Home = () => {
 
   const [selectPhotoId, setSelectPhotoId] = useState(null);
+  const [commentList, setCommentList] = useState([]);
+  const [visibleComments, setVisibleComments] = useState(6);
+  // const [photoList, setPhotoList] = useState([]);
 
   const handleItemClick = (id) => {
     setSelectPhotoId(id);
   };
 
-  const postList = [
-    {
-      id: 1,
-      userName: "NAME",
-      description: "description",
-      email: "title",
-      newsDate: "",
-    },
-    {
-      id: 2,
-      userName: "name",
-      description: "description",
-      email: "title",
-      newsDate: "",
-    },
-    {
-      id: 3,
-      userName: "name",
-      description: "description",
-      email: "title",
-      newsDate: "",
-    },
-  ]
+  useEffect(() => {
+    // Fetch comments data
+    fetch('https://jsonplaceholder.typicode.com/comments')
+      .then((response) => response.json())
+      .then((data) => setCommentList(data))
+      .catch((error) => console.error('Error fetching comments:', error));
+
+    // Fetch photos data
+    // fetch('https://jsonplaceholder.typicode.com/photos')
+    //   .then((response) => response.json())
+    //   .then((data) => setPhotoList(data))
+    //   .catch((error) => console.error('Error fetching photos:', error));
+  }, []);
+
+  const loadMoreComments = () => {
+    setVisibleComments((prevVisibleComments) => prevVisibleComments + 10);
+  };
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setLoading(true);
+  //     const response = await axios.get(
+  //       "https://jsonplaceholder.typicode.com/comments"
+  //     );
+  //     setPosts(response.data);
+  //     setLoading(false);
+  //   };
+  // fetchData();
+  // }, []);
+
+  // const commentList = [
+  //   {
+  //     id: 1,
+  //     name: "NAME",
+  //     body: "description",
+  //     email: "title",
+  //     date: "",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "name",
+  //     body: "description",
+  //     email: "title",
+  //     date: "",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "name",
+  //     body: "description",
+  //     email: "title",
+  //     date: "",
+  //   },
+  // ]
 
   const photoList = [
     {
       id: 1,
       title: "title",
-      imgUrl: "https://via.placeholder.com/600/92c952",
+      thumbnailUrl: "https://via.placeholder.com/600/92c952",
+      url: "https://via.placeholder.com/600/92c952",
     },
     {
       id: 2,
       title: "title",
-      imgUrl: "https://via.placeholder.com/150/d32776",
+      thumbnailUrl: "https://via.placeholder.com/150/d32776",
+      url: "https://via.placeholder.com/150/d32776",
     },
     {
       id: 3,
       title: "title",
-      imgUrl: "https://via.placeholder.com/150/56a8c2",
+      thumbnailUrl: "https://via.placeholder.com/150/56a8c2",
+      url: "https://via.placeholder.com/150/56a8c2",
     },
     {
       id: 4,
       title: "title",
-      imgUrl: "https://via.placeholder.com/150/24f355",
+      thumbnailUrl: "https://via.placeholder.com/150/24f355",
+      url: "https://via.placeholder.com/150/24f355",
     },
     {
       id: 5,
       title: "title",
-      imgUrl: "https://via.placeholder.com/150/56a8c2",
+      thumbnailUrl: "https://via.placeholder.com/150/56a8c2",
+      url: "https://via.placeholder.com/150/56a8c2",
     },
   ]
 
@@ -68,22 +106,26 @@ const Home = () => {
       <HomeContainer>
         <div className="inner">
 
-          <div className="post">
+          <div className="comment">
             <h2 className="title">포스트 영역</h2>
 
-            <ul className="post__list">
-              {postList.map((post, postItem) => (
-                <li className="post__item" key={postItem}>
-                  <span className="post__item--name">{post.userName}</span>
-                  <p className="post__item--description">{post.description}</p>
+            <ul className="comment__list">
+              {commentList.slice(0, visibleComments).map((comment, commentItem) => (
+                <li className="comment__item" key={commentItem}>
+                  <div>
+                    <span className="comment__item--name">{comment.name}</span>
+                    <p className="comment__item--description">{comment.body}</p>
+                  </div>
                   
                   <div className="info-box">
-                    <h3 className="post__item--email">{post.email}</h3>
-                    <small className="post__item--date">date</small>
+                    <h3 className="comment__item--email">{comment.email}</h3>
+                    <small className="comment__item--date">date</small>
                   </div>
                 </li>
               ))}
             </ul>
+
+            <button type="button" className="comment--more-btn" onClick={loadMoreComments}>더보기</button>
           </div>
           
           <div className="photo">
@@ -91,10 +133,11 @@ const Home = () => {
 
             <ul className="photo__list">
               {photoList.map((photo) => (
+                // 사진의 id 추적
                 <li className="photo__item" key={photo.id}>
                   <div className="photo__item--click" onClick={() => handleItemClick(photo.id)}>
                     <div className="photo__item--img">
-                      <img src={photo.imgUrl} alt="" />
+                      <img src={photo.thumbnailUrl} alt="" />
                     </div>
                     <h3 className="photo__item--title">{photo.title}</h3>
                     <p className="photo__item--hover">
@@ -102,7 +145,7 @@ const Home = () => {
                     </p>
                   </div>
 
-
+                  {/* 해당 id 기반으로 확대된 이미지 렌더링 */}
                   {selectPhotoId === photo.id && (
                     <div className="enlargement">
                       <div className="enlargement__inner">
@@ -118,7 +161,7 @@ const Home = () => {
                         </div>
 
                         <div className="enlargement--img">
-                          <img src={photo.imgUrl} alt="" />
+                          <img src={photo.url} alt="" />
                         </div>
                       </div>
                     </div>
@@ -126,6 +169,22 @@ const Home = () => {
                 </li>
               ))}
             </ul>
+
+            <div>
+              <button type="button">이전</button>
+              <ul>
+                <li>
+                  <a href="">1</a>
+                </li>
+                <li>
+                  <a href="">2</a>
+                </li>
+                <li>
+                  <a href="">3</a>
+                </li>
+              </ul>
+              <button type="button">다음</button>
+            </div>
           </div>
         </div>
       </HomeContainer>
@@ -140,7 +199,7 @@ const HomeContainer = styled.div`
     text-align: center;
     margin-bottom: 60px;
   }
-  .post {
+  .comment {
     margin-bottom: 150px;
 
     &__list {
@@ -149,6 +208,9 @@ const HomeContainer = styled.div`
       gap: 20px;
     }
     &__item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       padding: 20px;
       border: 1px solid #999;
       border-radius: 8px;
@@ -156,8 +218,11 @@ const HomeContainer = styled.div`
         font-size: 18px;
       }
       &--description {
-        margin: 10px 0;
-        font-size: 16px;
+        margin: 15px 0;
+        font-size: 14px;
+        font-weight: 400;
+        color: #ccc;
+        line-height: 1.4;
       }
   
       .info-box {
@@ -169,11 +234,16 @@ const HomeContainer = styled.div`
       }
       
       &--email {
-        font-size: 14px;
+        font-size: 12px;
       }
       &--date {
-        font-size: 14px;
+        font-size: 12px;
       }
+    }
+
+    &--more-btn {
+      background-color: #f1f1f1;
+      color: #000;
     }
   }
 
