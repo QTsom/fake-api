@@ -6,7 +6,8 @@ const Home = () => {
 
   const [selectPhotoId, setSelectPhotoId] = useState(null);
   const [commentList, setCommentList] = useState([]);
-  const [visibleComments, setVisibleComments] = useState(6);
+  const [commentVisibleComments, setCommentVisibleComments] = useState(6);
+  // const [photoVisibleComments, setPhotoVisibleComments] = useState(6);
   // const [photoList, setPhotoList] = useState([]);
 
   const handleItemClick = (id) => {
@@ -21,14 +22,14 @@ const Home = () => {
       .catch((error) => console.error('Error fetching comments:', error));
 
     // Fetch photos data
-    // fetch('https://jsonplaceholder.typicode.com/photos')
-    //   .then((response) => response.json())
-    //   .then((data) => setPhotoList(data))
-    //   .catch((error) => console.error('Error fetching photos:', error));
+    fetch('https://jsonplaceholder.typicode.com/photos')
+      .then((response) => response.json())
+      .then((data) => setPhotoList(data))
+      .catch((error) => console.error('Error fetching photos:', error));
   }, []);
 
   const loadMoreComments = () => {
-    setVisibleComments((prevVisibleComments) => prevVisibleComments + 10);
+    setCommentVisibleComments((prevCommentVisibleComments) => prevCommentVisibleComments + 10);
   };
 
   // useEffect(() => {
@@ -67,38 +68,38 @@ const Home = () => {
   //   },
   // ]
 
-  const photoList = [
-    {
-      id: 1,
-      title: "title",
-      thumbnailUrl: "https://via.placeholder.com/600/92c952",
-      url: "https://via.placeholder.com/600/92c952",
-    },
-    {
-      id: 2,
-      title: "title",
-      thumbnailUrl: "https://via.placeholder.com/150/d32776",
-      url: "https://via.placeholder.com/150/d32776",
-    },
-    {
-      id: 3,
-      title: "title",
-      thumbnailUrl: "https://via.placeholder.com/150/56a8c2",
-      url: "https://via.placeholder.com/150/56a8c2",
-    },
-    {
-      id: 4,
-      title: "title",
-      thumbnailUrl: "https://via.placeholder.com/150/24f355",
-      url: "https://via.placeholder.com/150/24f355",
-    },
-    {
-      id: 5,
-      title: "title",
-      thumbnailUrl: "https://via.placeholder.com/150/56a8c2",
-      url: "https://via.placeholder.com/150/56a8c2",
-    },
-  ]
+  // const photoList = [
+  //   {
+  //     id: 1,
+  //     title: "title",
+  //     thumbnailUrl: "https://via.placeholder.com/600/92c952",
+  //     url: "https://via.placeholder.com/600/92c952",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "title",
+  //     thumbnailUrl: "https://via.placeholder.com/150/d32776",
+  //     url: "https://via.placeholder.com/150/d32776",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "title",
+  //     thumbnailUrl: "https://via.placeholder.com/150/56a8c2",
+  //     url: "https://via.placeholder.com/150/56a8c2",
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "title",
+  //     thumbnailUrl: "https://via.placeholder.com/150/24f355",
+  //     url: "https://via.placeholder.com/150/24f355",
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "title",
+  //     thumbnailUrl: "https://via.placeholder.com/150/56a8c2",
+  //     url: "https://via.placeholder.com/150/56a8c2",
+  //   },
+  // ]
 
   return (
     <Layout>
@@ -110,7 +111,7 @@ const Home = () => {
             <h2 className="title">포스트 영역</h2>
 
             <ul className="comment__list">
-              {commentList.slice(0, visibleComments).map((comment, commentItem) => (
+              {commentList.slice(0, commentVisibleComments).map((comment, commentItem) => (
                 <li className="comment__item" key={commentItem}>
                   <div>
                     <span className="comment__item--name">{comment.name}</span>
@@ -172,7 +173,7 @@ const Home = () => {
               ))}
             </ul>
 
-            <div>
+            <div className="pagination">
               <button type="button">이전</button>
               <ul>
                 <li>
