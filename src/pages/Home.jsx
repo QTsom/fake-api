@@ -10,6 +10,7 @@ const Home = () => {
   const [photoList, setPhotoList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+  const maxDisplayedPages = 5;
 
   const handleItemClick = (id) => {
     setSelectPhotoId(id);
@@ -39,9 +40,10 @@ const Home = () => {
 
   const renderPaginationItems = () => {
     const totalPages = Math.ceil(photoList.length / itemsPerPage);
+    const lastVisiblePage = Math.min(currentPage + maxDisplayedPages - 1, totalPages);
     const paginationItems = [];
-
-    for (let i = 1; i <= totalPages; i++) {
+  
+    for (let i = Math.max(1, currentPage); i <= lastVisiblePage; i++) {
       paginationItems.push(
         <li key={i} className={`pagination__item ${currentPage === i ? 'active' : ''}`}>
           <a href="#" onClick={() => setCurrentPage(i)}>
@@ -50,7 +52,7 @@ const Home = () => {
         </li>
       );
     }
-
+  
     return paginationItems;
   };
 
@@ -153,7 +155,7 @@ const Home = () => {
             </div>
           </div>
           
-          <div className="photo">
+          <div className="photo" id="photo">
             <h2 className="title">포토 영역</h2>
 
             <ul className="photo__list">
@@ -203,9 +205,11 @@ const Home = () => {
               >
                 이전
               </button>
+
               <ul  className="pagination__list">
                 {renderPaginationItems()}
               </ul>
+
               <button
                 type="button"
                 onClick={() =>
