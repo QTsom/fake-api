@@ -4,11 +4,12 @@ import Layout from "components/common/Layout";
 
 const Home = () => {
 
-  const [selectPhotoId, setSelectPhotoId] = useState(null);
   const [commentList, setCommentList] = useState([]);
   const [commentVisibleComments, setCommentVisibleComments] = useState(6);
-  // const [photoVisibleComments, setPhotoVisibleComments] = useState(6);
-  // const [photoList, setPhotoList] = useState([]);
+  const [selectPhotoId, setSelectPhotoId] = useState(null);
+  const [photoList, setPhotoList] = useState([]);
+  const [currentPage, setCurrentPage] = useState([1]);
+  const itemPerPage = 10;
 
   const handleItemClick = (id) => {
     setSelectPhotoId(id);
@@ -175,14 +176,14 @@ const Home = () => {
 
             <div className="pagination">
               <button type="button">이전</button>
-              <ul>
-                <li>
+              <ul  className="pagination__list">
+                <li className="pagination__item">
                   <a href="">1</a>
                 </li>
-                <li>
+                <li className="pagination__item">
                   <a href="">2</a>
                 </li>
-                <li>
+                <li className="pagination__item">
                   <a href="">3</a>
                 </li>
               </ul>
