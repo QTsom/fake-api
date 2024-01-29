@@ -8,8 +8,8 @@ const Home = () => {
   const [commentVisibleComments, setCommentVisibleComments] = useState(6);
   const [selectPhotoId, setSelectPhotoId] = useState(null);
   const [photoList, setPhotoList] = useState([]);
-  const [currentPage, setCurrentPage] = useState([1]);
-  const itemPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
 
   const handleItemClick = (id) => {
     setSelectPhotoId(id);
@@ -31,6 +31,27 @@ const Home = () => {
 
   const loadMoreComments = () => {
     setCommentVisibleComments((prevCommentVisibleComments) => prevCommentVisibleComments + 10);
+  };
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = photoList.slice(indexOfFirstItem, indexOfLastItem);
+
+  const renderPaginationItems = () => {
+    const totalPages = Math.ceil(photoList.length / itemsPerPage);
+    const paginationItems = [];
+
+    for (let i = 1; i <= totalPages; i++) {
+      paginationItems.push(
+        <li key={i} className={`pagination__item ${currentPage === i ? 'active' : ''}`}>
+          <a href="#" onClick={() => setCurrentPage(i)}>
+            {i}
+          </a>
+        </li>
+      );
+    }
+
+    return paginationItems;
   };
 
   // useEffect(() => {
@@ -136,7 +157,7 @@ const Home = () => {
             <h2 className="title">포토 영역</h2>
 
             <ul className="photo__list">
-              {photoList.map((photo) => (
+              {currentItems.map((photo) => (
                 // 사진의 id 추적
                 <li className="photo__item" key={photo.id}>
                   <div className="photo__item--click" onClick={() => handleItemClick(photo.id)}>
@@ -175,19 +196,25 @@ const Home = () => {
             </ul>
 
             <div className="pagination">
-              <button type="button">이전</button>
+              <button
+                type="button"
+                onClick={() => setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))}
+                disabled={currentPage === 1}
+              >
+                이전
+              </button>
               <ul  className="pagination__list">
-                <li className="pagination__item">
-                  <a href="">1</a>
-                </li>
-                <li className="pagination__item">
-                  <a href="">2</a>
-                </li>
-                <li className="pagination__item">
-                  <a href="">3</a>
-                </li>
+                {renderPaginationItems()}
               </ul>
-              <button type="button">다음</button>
+              <button
+                type="button"
+                onClick={() =>
+                  setCurrentPage((prevPage) => Math.min(prevPage + 1, Math.ceil(photoList.length / itemsPerPage)))
+                }
+                disabled={indexOfLastItem >= photoList.length}      
+              >
+                다음
+              </button>
             </div>
           </div>
         </div>
