@@ -6,7 +6,7 @@ const Header = () => {
         <HeaderContainer>
             <div className="header-inner">
                 <h1 className="title">
-                    <a href="">fake API 사용해 호출</a>
+                    <Link to="/">fake API 사용해 호출</Link>
                 </h1>
 
                 <nav className="navigation">

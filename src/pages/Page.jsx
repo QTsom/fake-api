@@ -1,14 +1,16 @@
-import Layout from "components/common/Layout"
-import styled from "styled-components"
+import styled from "styled-components";
+import Layout from "components/common/Layout";
 
 const Page = () => {
-    <Layout>
-        <PageContainer>
-            <div className="inner">
-
-            </div>
-        </PageContainer>
-    </Layout>
+    return (
+        <Layout>
+            <PageContainer>
+                <div className="inner">
+                    hi
+                </div>
+            </PageContainer>
+        </Layout>
+    )
 }
 
 const PageContainer = styled.div`
