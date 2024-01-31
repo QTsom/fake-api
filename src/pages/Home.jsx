@@ -12,8 +12,17 @@ const Home = () => {
   const itemsPerPage = 12;
   const maxDisplayedPages = 5;
 
+  // 확대된 사진
   const handleItemClick = (id) => {
     setSelectPhotoId(id);
+  };
+  // 날짜값
+  const getCurrentDate = () => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   };
 
   useEffect(() => {
@@ -144,7 +153,7 @@ const Home = () => {
                   
                   <div className="info-box">
                     <h3 className="comment__item--email">{comment.email}</h3>
-                    <small className="comment__item--date">date</small>
+                    <small className="comment__item--date">{getCurrentDate()}</small>
                   </div>
                 </li>
               ))}
