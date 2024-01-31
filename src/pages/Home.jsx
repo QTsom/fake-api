@@ -19,12 +19,9 @@ const Home = () => {
   // 날짜값
   const getCurrentDate = () => {
     const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    const day = String(currentDate.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+    return currentDate.toDateString();
   };
-
+  
   useEffect(() => {
     // Fetch comments data
     fetch('https://jsonplaceholder.typicode.com/comments')
