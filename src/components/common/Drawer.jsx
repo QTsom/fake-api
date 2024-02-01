@@ -1,11 +1,6 @@
-import {useState} from "react"
 import styled from "styled-components"
 
-const Drawer = () => {
-    const [isActive, setIsActive] = useState(false);
-    const toggleDrawer = () => {
-        setIsActive(!isActive);
-    }
+const Drawer = ({ isActive, toggleDrawer }) => {
 
     return (
         <DrawerContainer className={isActive ? "active" : ""}>
@@ -43,7 +38,7 @@ const DrawerContainer = styled.div`
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    transition: all 0.3s;
+    transition: all 0.7s;
 
     &.active {
         right: -230px;

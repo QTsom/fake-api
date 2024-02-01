@@ -1,9 +1,17 @@
+import {useState} from "react"
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import DrawerImg from "assets/img/icon_drawer.svg"
 import Drawer from "./Drawer";
 
 const Header = () => {
+
+    const [isActive, setIsActive] = useState(false);
+
+    const toggleDrawer = () => {
+        setIsActive(!isActive);
+    }
+
     return (
         <HeaderContainer>
             <div className="header-inner">
@@ -17,12 +25,12 @@ const Header = () => {
                     </Link>
                 </nav>
 
-                <button type="button" className="drawer-button">
+                <button type="button" className="drawer-button" onClick={toggleDrawer}>
                     <img src={DrawerImg} alt="" />
                 </button>
             </div>
 
-            <Drawer />
+            <Drawer isActive={isActive} toggleDrawer={toggleDrawer} />
         </HeaderContainer>
     )
 }
