@@ -72,7 +72,7 @@ const HeaderContainer = styled.header `
         width: 35px;
         height: 35px;
         padding: 5px;
-        filter: invert(100);
+        filter: invert(100) drop-shadow(3px 3px #000);
         z-index: 50;
     }
 `

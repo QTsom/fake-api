@@ -38,6 +38,7 @@ const DrawerContainer = styled.div`
     width: 500px;
     height: 500px;
     border-radius: 50%;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
     transition: all 0.7s;
 
     &.active {
@@ -69,6 +70,10 @@ const DrawerContainer = styled.div`
         &.fourth {
             top: 460px;
             left: 170px;
+        }
+
+        &--item {
+            text-shadow: 3px 3px #000;
         }
     }
 `
