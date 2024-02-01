@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import DrawerImg from "assets/img/icon_drawer.svg"
 
 const Header = () => {
     return (
@@ -15,7 +16,9 @@ const Header = () => {
                     </Link>
                 </nav>
 
-                <button type="button"></button>
+                <button type="button" className="drawer-button">
+                    <img src={DrawerImg} alt="" />
+                </button>
             </div>
         </HeaderContainer>
     )
@@ -25,10 +28,16 @@ const Header = () => {
 const HeaderContainer = styled.header `
     background-color: #333;
     border-bottom: 3px solid #f1f1f1;
+    
+    .title {
+        font-size: 30px;
+        flex-shrink: 0;
+    }
 
     .header-inner {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 100px;
         max-width: 1240px;
         width: 100%;
@@ -37,9 +46,19 @@ const HeaderContainer = styled.header `
         color: #fff;
     }
     .navigation {
+        width: 100%;
+
         &--link {
             font-size: 18px;
         }
+    }
+
+    .drawer-button {
+        flex-shrink: 0;
+        width: 35px;
+        height: 35px;
+        padding: 5px;
+        filter: invert(100);
     }
 `
 
