@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import Layout from "components/common/Layout";
+import DummyData from "components/DummyData";
 
 const Page = () => {
     return (
         <Layout>
             <PageContainer>
                 <div className="inner">
-                    hi
+                    page입니다
+
+                    <DummyData />
                 </div>
             </PageContainer>
         </Layout>
