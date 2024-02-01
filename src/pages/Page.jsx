@@ -7,7 +7,7 @@ const Page = () => {
         <Layout>
             <PageContainer>
                 <div className="inner">
-                    page입니다
+                    <h2 className="title">PAGE입니다</h2>
 
                     <DummyData />
                 </div>
@@ -17,7 +17,11 @@ const Page = () => {
 }
 
 const PageContainer = styled.div`
-    
+    .title {
+        font-size: 26px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
 `
 
 

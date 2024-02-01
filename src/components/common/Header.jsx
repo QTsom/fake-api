@@ -14,6 +14,8 @@ const Header = () => {
                         페이지로 이동
                     </Link>
                 </nav>
+
+                <button type="button"></button>
             </div>
         </HeaderContainer>
     )
