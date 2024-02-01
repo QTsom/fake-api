@@ -29,6 +29,7 @@ const Header = () => {
 
 
 const HeaderContainer = styled.header `
+    position: relative;
     
     .header-inner {
         display: flex;
@@ -58,11 +59,13 @@ const HeaderContainer = styled.header `
     }
 
     .drawer-button {
+        position: relative;
         flex-shrink: 0;
         width: 35px;
         height: 35px;
         padding: 5px;
         filter: invert(100);
+        z-index: 50;
     }
 `
 
