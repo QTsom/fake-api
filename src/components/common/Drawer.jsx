@@ -30,7 +30,9 @@ const Drawer = () => {
 }
 
 const DrawerContainer = styled.div`
-    
+    position: relative;
+    right: 0;
+    top: 0;
 `
 
 export default Drawer;
