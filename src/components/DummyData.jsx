@@ -66,7 +66,6 @@ const DummyDataContainer = styled.div`
     }
 
     .dummy__item {
-
         &--img {
             margin-bottom: 23px;
             border-radius: 10px;
