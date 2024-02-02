@@ -5,6 +5,12 @@
     margin: 0 auto;
 }
 
+.content-title {
+    font-size: 26px;
+    text-align: center;
+    color: #ccc;
+}
+
 .pagination {
     display: flex;
     align-items: center;

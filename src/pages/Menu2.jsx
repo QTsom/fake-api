@@ -5,7 +5,9 @@ const Menu2 = () => {
     return (
         <Layout>
             <Menu2Container>
-
+                <div className="inner">
+                    <h2 className="content-title">첫 번째 메뉴</h2>
+                </div>
             </Menu2Container>
         </Layout>
     )
