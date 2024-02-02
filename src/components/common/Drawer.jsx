@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 const Drawer = ({ isActive, toggleDrawer }) => {
 
@@ -6,24 +7,24 @@ const Drawer = ({ isActive, toggleDrawer }) => {
         <DrawerContainer className={isActive ? "active" : ""}>
             <ul className="drawer__list">
                 <li className="drawer__item first">
-                    <a href="" className="drawer__item--item">
+                    <Link to="/Menu1" className="drawer__item--item">
                         메뉴1
-                    </a>
+                    </Link>
                 </li> 
                 <li className="drawer__item second">
-                    <a href="" className="drawer__item--item">
+                    <Link to="/Menu2" className="drawer__item--item">
                         메뉴2
-                    </a>
+                    </Link>
                 </li> 
                 <li className="drawer__item third">
-                    <a href="" className="drawer__item--item">
+                    <Link to="/Menu3" className="drawer__item--item">
                         메뉴3
-                    </a>
+                    </Link>
                 </li> 
                 <li className="drawer__item fourth">
-                    <a href="" className="drawer__item--item">
+                    <Link to="/Menu4" className="drawer__item--item">
                         메뉴4
-                    </a>
+                    </Link>
                 </li> 
             </ul>
         </DrawerContainer>
