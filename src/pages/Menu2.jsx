@@ -7,6 +7,10 @@ const Menu2 = () => {
             <Menu2Container>
                 <div className="inner">
                     <h2 className="content-title">첫 번째 메뉴</h2>
+
+                    <ul>
+                        <li></li>
+                    </ul>
                 </div>
             </Menu2Container>
         </Layout>
