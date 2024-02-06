@@ -44,28 +44,11 @@ const Menu1 = () => {
 
                     <div className="content-wrap">
 
-                        {/* <ul className="search__list">
-                            {filterResults.map((item) => (
-                                <li className="search__item" key={item.id}>
-                                    <strong className="search__item--name">Name: {item.name} </strong>
-                                    <span className="search__item--email">Email: {item.email}</span>
-                                    <span className="search__item--phone">Phone: {item.phone}</span>
-                                    <span className="search__item--company">Company: {item.company.name} - {item.company.catchPhrase} - {item.company.bs}</span>
-                                    <p className="search__item--address">Address: {item.address.street} - {item.address.suite} - {item.address.city}</p>
-                                </li>
-                            ))}
-                        </ul> */}
                         {searchInput.length > 1 && searchInput !== '' && (
                             <div className="content-wrap--empty">
                                 <p>검색 내역이 없습니다.</p>
                             </div>
                         )}
-                        {/* {searchInput !== '' && filterResults.length === 0 && (
-                            <div className="content-wrap--empty">
-                                <p>검색 내역이 없습니다.</p>
-                            </div>
-                            )
-                        } */}
 
                         <ul className="search__list">
                             {searchInput.length > 1 ? (

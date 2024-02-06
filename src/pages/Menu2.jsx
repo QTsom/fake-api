@@ -6,7 +6,7 @@ const Menu2 = () => {
         <Layout>
             <Menu2Container>
                 <div className="inner">
-                    <h2 className="content-title">첫 번째 메뉴</h2>
+                    <h2 className="content-title">두 번째 메뉴</h2>
 
                     <ul>
                         <li></li>
