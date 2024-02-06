@@ -32,7 +32,10 @@ const Menu1 = () => {
         <Layout>
             <Menu1Container>
                 <div className="inner">
-                    <h2 className="content-title">첫 번째 메뉴</h2>
+                    <div className="title-wrap">
+                        <h2 className="content-title">Filter 검색</h2>
+                        <p className="title-wrap--description">React Hook 사용하여 React 내 완전 함수형의 검색 필터를 갖게 됨</p>
+                    </div>
 
                     <div className="search-wrap">
                         <input type="search" className="search-wrap--input" placeholder="검색어를 입력하세요." onChange={(e) => searchItems(e.target.value)} />
@@ -81,8 +84,16 @@ const Menu1 = () => {
 }
 
 const Menu1Container = styled.div`
-    .content-title {
-        margin-bottom: 40px;
+    .title-wrap {
+        margin-bottom: 80px;
+        text-align: center;
+
+        .content-title {
+            margin-bottom: 15px;
+        }
+        &--description {
+            font-size: 20px;
+        }
     }
     .search__list {
         display: grid;
