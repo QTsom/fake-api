@@ -21,7 +21,7 @@ const Menu1 = () => {
                     <h2 className="content-title">첫 번째 메뉴</h2>
 
                     <div className="search-wrap">
-                        <input type="search" className="search-wrap--input" />
+                        <input type="search" className="search-wrap--input" placeholder="검색어를 입력하세요." />
                         <button type="button" className="search-wrap--button">검색하기</button>
                     </div>
 
@@ -63,7 +63,7 @@ const Menu1Container = styled.div`
         justify-content: center;
         margin: 0 auto;
         width: 450px;
-        height: 35px;
+        height: 50px;
         padding: 0 30px;
         margin-bottom: 20px;
         border-radius: 8px;
@@ -72,16 +72,27 @@ const Menu1Container = styled.div`
 
         &--input {
             width: 100%;
-            height: 70%;
+            height: 25px;
             padding: 0 15px;
             font-size: 16px;
             color: #fff;
             border: 1px solid #ccc;
             border-radius: 5px;
+
+            &::placeholder {
+                font-size: 13px;
+                color: #888;
+            }
         }
         &--button {
             flex-shrink: 0;
-            font-size: 16px;
+            height: 25px;
+            padding: 2px 4px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #000;
+            background-color: #fff;
+            border-radius: 2px;
         }
     }
 
