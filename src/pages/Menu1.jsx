@@ -91,8 +91,10 @@ const Menu1Container = styled.div`
     .title-wrap {
         margin-bottom: 80px;
         text-align: center;
+        color: #fbf845;
 
         .content-title {
+            color: #fbf845;
             margin-bottom: 15px;
         }
         &--description {
@@ -116,7 +118,7 @@ const Menu1Container = styled.div`
         margin: 0 auto 35px;
         border-radius: 8px;
         gap: 10px;
-        border: 6px double #ccc;
+        border: 6px double #fbf845;
 
         &--input {
             width: 100%;
@@ -124,12 +126,12 @@ const Menu1Container = styled.div`
             padding: 0 15px;
             font-size: 16px;
             color: #fff;
-            border: 1px solid #ccc;
+            border: 1px solid #fbf845;
             border-radius: 5px;
 
             &::placeholder {
                 font-size: 13px;
-                color: #aaa;
+                color: #fbf845;
             }
         }
 
@@ -142,6 +144,8 @@ const Menu1Container = styled.div`
             padding: 0 20px;
             font-size: 18px;
             line-height: 25px;
+
+            color: #fbf845;
             background: #333;
         }
     }
