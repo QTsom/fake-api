@@ -20,11 +20,11 @@ const Menu1 = () => {
         if (searchInput !== '') {
             const filteredData = searchList.filter((item) => {
                 return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
-            })
-            setFilterResults(filteredData)
+            });
+            setFilterResults(filteredData);
         }
         else{
-            setFilterResults(searchList)
+            setFilterResults(searchList);
         }
     }
     
@@ -38,13 +38,34 @@ const Menu1 = () => {
                     </div>
 
                     <div className="search-wrap">
-                        <input type="search" className="search-wrap--input" placeholder="검색어를 입력하세요." onChange={(e) => searchItems(e.target.value)} />
+                        <strong>검색</strong>
+                        <input type="search" className="search-wrap--input" placeholder="한 글자 이상 검색어를 입력하세요." onChange={(e) => searchItems(e.target.value)} />
                     </div>
 
                     <div className="content-wrap">
-                        <div className="content-wrap--empty">
-                            <p>검색 내역이 없습니다.</p>
-                        </div>
+
+                        {/* <ul className="search__list">
+                            {filterResults.map((item) => (
+                                <li className="search__item" key={item.id}>
+                                    <strong className="search__item--name">Name: {item.name} </strong>
+                                    <span className="search__item--email">Email: {item.email}</span>
+                                    <span className="search__item--phone">Phone: {item.phone}</span>
+                                    <span className="search__item--company">Company: {item.company.name} - {item.company.catchPhrase} - {item.company.bs}</span>
+                                    <p className="search__item--address">Address: {item.address.street} - {item.address.suite} - {item.address.city}</p>
+                                </li>
+                            ))}
+                        </ul> */}
+                        {searchInput.length > 1 && searchInput !== '' && (
+                            <div className="content-wrap--empty">
+                                <p>검색 내역이 없습니다.</p>
+                            </div>
+                        )}
+                        {/* {searchInput !== '' && filterResults.length === 0 && (
+                            <div className="content-wrap--empty">
+                                <p>검색 내역이 없습니다.</p>
+                            </div>
+                            )
+                        } */}
 
                         <ul className="search__list">
                             {searchInput.length > 1 ? (
@@ -102,21 +123,21 @@ const Menu1Container = styled.div`
     }
 
     .search-wrap {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto;
         width: 450px;
-        height: 50px;
+        height: 70px;
         padding: 0 30px;
-        margin-bottom: 20px;
+        margin: 0 auto 35px;
         border-radius: 8px;
         gap: 10px;
-        border: 1px solid #ccc;
+        border: 6px double #ccc;
 
         &--input {
             width: 100%;
-            height: 25px;
+            height: 30px;
             padding: 0 15px;
             font-size: 16px;
             color: #fff;
@@ -127,6 +148,18 @@ const Menu1Container = styled.div`
                 font-size: 13px;
                 color: #aaa;
             }
+        }
+
+        strong {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: inline-block;
+            padding: 0 20px;
+            font-size: 18px;
+            line-height: 25px;
+            background: #333;
         }
     }
 
