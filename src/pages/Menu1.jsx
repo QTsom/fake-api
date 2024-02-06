@@ -1,19 +1,33 @@
 import Layout from "components/common/Layout";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
 
 const Menu1 = () => {
     const [searchList, setSearchList] = useState([]);
+    const [filterResults, setFilterResults] = useState([]);
+    const [searchInput, setSearchInput] = useState('');
 
     useEffect(() => {
-        // Fetch comments data
-        fetch('https://jsonplaceholder.typicode.com/users')
-          .then((response) => response.json())
-          .then((data) => setSearchList(data))
-          .catch((error) => console.error('Error fetching comments:', error));
-    
-      }, []);
+        axios.get(`https://jsonplaceholder.typicode.com/users`)
+            .then((response) => {
+                setSearchList(response.data);
+            })
+    }, []);
 
+    const searchItems = (searchValue) => {
+        setSearchInput(searchValue)
+        if (searchInput !== '') {
+            const filteredData = searchList.filter((item) => {
+                return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+            })
+            setFilterResults(filteredData)
+        }
+        else{
+            setFilterResults(searchList)
+        }
+    }
+    
     return (
         <Layout>
             <Menu1Container>
@@ -21,24 +35,43 @@ const Menu1 = () => {
                     <h2 className="content-title">첫 번째 메뉴</h2>
 
                     <div className="search-wrap">
-                        <input type="search" className="search-wrap--input" placeholder="검색어를 입력하세요." />
-                        <button type="button" className="search-wrap--button">검색하기</button>
+                        <input type="search" className="search-wrap--input" placeholder="검색어를 입력하세요." onChange={(e) => searchItems(e.target.value)} />
                     </div>
 
                     <div className="content-wrap">
                         <div className="content-wrap--empty">
                             <p>검색 내역이 없습니다.</p>
                         </div>
+
                         <ul className="search__list">
-                            {searchList.map((search, searchItem) => (
-                                <li className="search__item" key={searchItem}>
-                                    <strong className="search__item--name">Name: {search.name} </strong>
-                                    <span className="search__item--email">Email: {search.email}</span>
-                                    <span className="search__item--phone">Phone: {search.phone}</span>
-                                    <span className="search__item--company">Company: {search.company.name} - {search.company.catchPhrase} - {search.company.bs}</span>
-                                    <p className="search__item--address">Address: {search.address.street} - {search.address.suite} - {search.address.city}</p>
-                                </li>
-                            ))}
+                            {searchInput.length > 1 ? (
+                                filterResults.map((item) => {
+                                    return (
+                                        <li className="search__item">
+                                            <strong className="search__item--name">Name: {item.name} </strong>
+                                            <span className="search__item--email">Email: {item.email}</span>
+                                            <span className="search__item--phone">Phone: {item.phone}</span>
+                                            <span className="search__item--company">Company: {item.company.name} - {item.company.catchPhrase} - {item.company.bs}</span>
+                                            <p className="search__item--address">Address: {item.address.street} - {item.address.suite} - {item.address.city}</p>
+                                        </li>
+                                    )
+                                })
+                            ) : (
+                                searchList.map((item) => {
+                                    return (
+                                        <li className="search__item">
+                                            <strong className="search__item--name">Name: {item.name} </strong>
+                                            <span className="search__item--email">Email: {item.email}</span>
+                                            <span className="search__item--phone">Phone: {item.phone}</span>
+                                            <span className="search__item--company">Company: {item.company.name} - {item.company.catchPhrase} - {item.company.bs}</span>
+                                            <p className="search__item--address">Address: {item.address.street} - {item.address.suite} - {item.address.city}</p>
+                                        </li>
+                                    )
+                                })
+                                
+                                )
+                            }
+
                         </ul>
                     </div>
                 </div>
@@ -81,47 +114,54 @@ const Menu1Container = styled.div`
 
             &::placeholder {
                 font-size: 13px;
-                color: #888;
+                color: #aaa;
             }
         }
-        &--button {
-            flex-shrink: 0;
-            height: 25px;
-            padding: 2px 4px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #000;
-            background-color: #fff;
-            border-radius: 2px;
+    }
+
+    .content-wrap {
+        &--empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+
+            p {
+                font-size: 20px;
+                font-weight: 400;
+            }
+        }
+
+        .search__item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+    
+            > * {
+                word-break: break-all;
+            }
+    
+            &--name {
+                font-size: 18px;
+            }
+    
+            &--company {
+                font-size: 12px;
+                color: #aaa;
+            }
+            &--address {
+                font-size: 12px;
+                color: #aaa;
+            }
+    
         }
     }
 
-    .search__item {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-
-        > * {
-            word-break: break-all;
-        }
-
-        &--name {
-            font-size: 18px;
-        }
-
-        &--company {
-            font-size: 12px;
-            color: #aaa;
-        }
-        &--address {
-            font-size: 12px;
-            color: #aaa;
-        }
-
-    }
 
 
 `
