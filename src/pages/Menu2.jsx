@@ -70,6 +70,19 @@ const Menu2 = ({category}) => {
 
 const Menu2Container = styled.div`
     
+    .title-wrap {
+        margin-bottom: 80px;
+        text-align: center;
+        color: #ff5cd3;
+
+        .content-title {
+            color: #ff5cd3;
+            margin-bottom: 15px;
+        }
+        &--description {
+            font-size: 20px;
+        }
+    }
 `
 
 export default Menu2;
