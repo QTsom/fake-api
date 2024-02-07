@@ -15,14 +15,14 @@ const NewsItem = ({article}) => {
             )}
 
             <div className="news-content">
-                <h2 className="news-content--title">
-                    <a href={url}>
-                        {title}
-                    </a>
-                </h2>
-                <p className="news-content--description">
-                    {description}
-                </p>
+                <a href={url} className="news-content--link">
+                    <h2 className="news-content--title">
+                            {title}
+                    </h2>
+                    <p className="news-content--description">
+                        {description}
+                    </p>
+                </a>
             </div>
         </NewsItemContainer>
     )
@@ -41,11 +41,38 @@ const NewsItemContainer = styled.article`
     }
 
     .img-wrap {
+        flex-shrink: 0;
         max-width: 400px;
         width: 100%;
         aspect-ratio: 5/3;
         border-radius: 10px;
         overflow: hidden;
+    }
+
+    .news-content {
+        height: 100%;
+
+        &--link {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        &--title {
+            font-size: 22px;
+            color: #ff5cd3;
+        }
+
+        &--description {
+            font-size: 15px;
+            color: #da2fac;
+            line-height: 1.4;
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 7;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
     }
 `
 

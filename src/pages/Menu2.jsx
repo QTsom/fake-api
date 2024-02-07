@@ -57,7 +57,7 @@ const Menu2 = ({category}) => {
                         <p className="title-wrap--description">외부 news api를 호출해 뉴스뷰어 작업</p>
                     </div>
 
-                    <ul>
+                    <ul className="news-wrap">
                         {articles.map((article) => (
                             <NewsItem key={article.url} article={article} />
                         ))}
@@ -83,6 +83,7 @@ const Menu2Container = styled.div`
             font-size: 20px;
         }
     }
+
 `
 
 export default Menu2;
