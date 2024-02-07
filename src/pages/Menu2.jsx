@@ -1,15 +1,19 @@
 import Layout from "components/common/Layout";
 import styled from "styled-components";
+import NewsItem from "components/NewsItem";
 
 const Menu2 = () => {
     return (
         <Layout>
             <Menu2Container>
                 <div className="inner">
-                    <h2 className="content-title">두 번째 메뉴</h2>
+                    <div className="title-wrap">
+                        <h2 className="content-title">News Api</h2>
+                        <p className="title-wrap--description">외부 news api를 호출해 뉴스뷰어 작업</p>
+                    </div>
 
                     <ul>
-                        <li></li>
+                        <NewsItem />
                     </ul>
                 </div>
             </Menu2Container>
